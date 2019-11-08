@@ -162,10 +162,7 @@ class BinarySearchTree:
 
 def InPreOrder(curr_node):
     nodeList = []
-    contador = 0
     if curr_node is not None:
-        if curr_node.getRight() == None and curr_node.getLeft() == None:
-            contador += contador
         nodeList = nodeList + InPreOrder(curr_node.getLeft())
         nodeList.insert(0, curr_node.getLabel())
         nodeList = nodeList + InPreOrder(curr_node.getRight())
@@ -174,9 +171,12 @@ def InPreOrder(curr_node):
 def contarHojas(curr_node):
     contador = 0
     if curr_node is not None:
+        print("Nodo actual: ",curr_node)
         if curr_node.getRight() == None and curr_node.getLeft() == None:
             contador += 1
+        print("Evaluando nodo izquierdo: ", curr_node.getLeft())
         contador += contarHojas(curr_node.getLeft())
+        print("Evaluando nodo derecho: ", curr_node.getRight())
         contador += contarHojas(curr_node.getRight())
     return contador
 
@@ -246,6 +246,8 @@ def main():
     t.insert(90)
     t.insert(40)
     t.insert(99)
+    t.insert(20)
+    t.insert(93)
     list = t.traversalTree(InPreOrder, t.root)
     hojas = t.traversalTree(contarHojas, t.root)
     print(hojas)
